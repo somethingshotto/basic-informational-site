@@ -1,12 +1,15 @@
 {
   "name": "basic-informational-site",
   "version": "1.0.0",
-  "description": "uhhh how do I even do this?",
+  "description": "express time",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "f",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }

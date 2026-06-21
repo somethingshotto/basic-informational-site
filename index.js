@@ -1,6 +1,9 @@
-const http = require("http");
-const fs = require("fs");
+/*const http = require("http");
+const fs = require("fs"); */
+
 const path = require("path");
+const express = require('express');
+const app = express()
 
 const routes = {
   "/": "index.html",
@@ -8,7 +11,8 @@ const routes = {
   "/contact": "contact-me.html",
 };
 
-const server = http.createServer((req, res) => {
+
+/* const server = http.createServer((req, res) => {
   const fileName = routes[req.url];
 
   if (!fileName) {
@@ -22,7 +26,8 @@ const server = http.createServer((req, res) => {
   return;
 }
 
-  const filePath = path.join(__dirname, fileName);
+const filePath = path.join(__dirname, fileName);
+
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
@@ -37,5 +42,19 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(8080, () => {
+  console.log("Server running at http://localhost:8080");
+}); */
+
+for (const route in routes) {
+  app.get(route, (req, res) => {
+    res.sendFile(path.join(__dirname, routes[route]));
+  });
+}
+
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, "404.html"));
+});
+
+app.listen(8080, () => {
   console.log("Server running at http://localhost:8080");
 });
